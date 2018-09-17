@@ -69,7 +69,21 @@ class Sorter {
     }
 
     setComparator(compareFunction) {
-        // your implementation
+                function compareFunction(a, b) {
+                a.toString();
+                b.toString();
+                if (a.age < b.age) {
+                    return 1;
+                }
+                if (a.age > b.age) {
+                    return -1;
+                }
+                else return 0;
+            //}
+
+        }
+        return this.arr.sort(compareFunction);
+
     }
 }
 
