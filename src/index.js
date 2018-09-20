@@ -1,76 +1,47 @@
 class Sorter {
-    constructor() {
-        // your implementation
-        //var sorter;
+    constructor()
+    {
         this.arr = [];
-
+        this.comparator = this.Compare;
     }
-
-    add(element) {
-        // your implementation
-
-        //this.element = element;
-        return this.arr.push(element);
-        //element;
-
+    Compare(l, r)
+    {
+        return l - r;
     }
-
-    at(index) {
-        // your implementation
+    add(element)
+    {
+        this.arr.push(element);
+    }
+    at(index)
+    {
         return this.arr[index];
     }
-
-    get length() {
-        // your implementation
+    get length()
+    {
         return this.arr.length;
     }
-
-    toArray() {
-        // your implementation
-        return this.arr
-        ;
-
-    }
-
-    sort(indices) {
-        var x;
-        var min;
-        var i;
-        var j;
-        console. log ('array initial' + this.arr);
-
-        console. log ('indices to sort' + indices);
-
-        for (i=indices.length-1; i > 0; i--) {
-            for(j= 1; j <= i; j++) {
-                if (indices[j-1] > indices[j]) {
-                    x = indices[j-1];
-                    indices[j-1] = indices[j];
-                    indices[j] = x;
-                }
-            }
-        }
-
-
-        for (i = indices.length-1; i > 0; i--) {
-            for(j= 1; j <= i; j++) {
-                if (this.arr[indices[j-1]] > this.arr[indices[j]]) {
-                    x = this.arr[indices[j-1]];
-                    this.arr[indices[j-1]] = this.arr[indices[j]];
-                    this.arr[indices[j]] = x;
-                }
-            }
-        }
-        console. log ('this array is' + this.arr);
+    toArray()
+    {
         return this.arr;
-
-
-
     }
-
-    setComparator(compareFunction) {
-        // your implementation
+    sort(indices)
+    {
+        var arr = [];
+        indices.sort(this.Compare);
+        indices.forEach(element =>
+        {
+            arr.push(this.arr[element]);
+        });
+        arr.sort(this.comparator);
+        indices.forEach((element, index) =>
+        {
+            this.arr[element] = arr[index];
+        })
+        return this;
+    }
+    setComparator(compareFunction)
+    {
+        this.comparator = compareFunction;
     }
 }
-
 module.exports = Sorter;
